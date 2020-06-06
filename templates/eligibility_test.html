@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='uswds-2.7.0/css/uswds.min.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script src="{{ url_for('static', filename='js/jquery.blockUI.min.js') }}"></script>
+</head>
+<body>
+    <!-- block ui -->
+    <script type="text/javascript">$.blockUI({ message: '<h2>Loading...</h2>' });</script>
+
+    <!-- main content -->
+    <div id="main">
+        <div id="accepted"></div>
+        {% include 'form.html' %}
+    </div>
+    
+    <!-- js -->
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="{{ url_for('static', filename='uswds-2.7.0/js/uswds.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            bindButtonClick();
+            bindFormSubmit();
+        });
+
+        function bindButtonClick() {
+            $('#submit').click(function () {
+                $('#question-form').block({
+                    message: '<h2>Processing</h2>',
+                    css: { border: '3px solid #a00' }
+                });
+            });
+        }
+
+        function processJson(data) {
+            $('#question-form').unblock();
+
+            if (data.status == "success") {
+                $('form').remove();
+                $('#accepted').append(data.accepted);
+                $('#main').append(data.payload);
+            } else if (data.status == "error") {
+                $('div#error').remove();
+                $('form > fieldset').append(data.payload);
+            } else if (data.status == "fail") {
+                $('form').remove();
+                $('#main').append(data.payload);
+            } else {
+                console.log("Something went wrong!");
+            }
+
+            // required to rebind elements and 
+            // event handlers after ajax returns.
+            bindButtonClick();
+            bindFormSubmit();
+        }
+
+        function bindFormSubmit() {
+            $('#question-form').ajaxForm({
+                dataType: 'json',
+                success: processJson
+            });
+        }
+    </script>
+
+    <!-- unblock ui -->
+    <script type="text/javascript">$.unblockUI();</script>
+</body>
+</html>

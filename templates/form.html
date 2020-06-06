@@ -1,0 +1,18 @@
+<form action="{{ url_for('submit_answer') }}" method="post" id="question-form" style="margin-top: 1rem;" novalidate>
+    <fieldset>
+        <legend>Question</legend>
+        
+        {{ form.csrf_token() }}
+        {{ form.uuid(value=uuid) }}
+
+        <p>{{ question }}</p>
+
+        <label class="usa-label" for="input-type-text">{{ form.answer.label }}</label>
+        {{ form.answer() }}
+    
+        <p>{{ form.submit(class_="usa-button") }}</p>
+    </fieldset>
+</form>
+
+
+ 

@@ -1,0 +1,106 @@
+---
+- uuid: 27505908-a0a7-4874-ab67-24fa5c5a0ebb
+  question_type: drop_down
+  position: 10
+  body: What is the location of this job?
+  validations:
+  - required
+  - is_string
+  options:
+  - Australia (Melbourne)
+  - Sweden
+  - Remote
+  - Other
+  condition: any
+  accepted_answers:
+  - Australia (Melbourne)
+  - Sweden
+  - Remote
+  message_if_fail: Sorry but the location of this job does not suit me.
+
+- uuid: a3d0ff9d-62f2-428a-9688-1634a9ef2f79
+  question_type: drop_down
+  position: 20
+  body: Is this a Permanent job?
+  validations:
+  - required
+  - is_string
+  options:
+  - 'Yes'
+  - 'No'
+  condition: equal
+  accepted_answers:
+  - 'Yes'
+  message_if_fail: I am currently only interested in permanent jobs.
+
+- uuid: 306ba067-6424-4411-82ed-a187e8226ebc
+  question_type: text_field
+  position: 30
+  body: How much does it pay?
+  validations:
+  - required
+  - is_decimal
+  condition: gte
+  accepted_answers: 
+  - 150000.00
+  message_if_fail: That amount is not gonna cut it for me! :)
+
+- uuid: a0e3d49b-aae6-4b10-b61c-8f0017917cb8
+  question_type: drop_down
+  position: 40
+  body: Is this a Python role?
+  validations:
+  - required
+  - is_string
+  options:
+  - 'Yes'
+  - 'No'
+  condition: equal
+  accepted_answers:
+  - 'Yes'
+  message_if_fail: You could not pay me enough to write anything but Python.
+
+- uuid: 0c2a53dd-6e22-4bb7-a685-310ef2a372e7
+  question_type: drop_down
+  position: 50
+  body: Am I required to do any sysadmin/operations/devops/infrastructure kind of work? (Answer <No> if you use Heroku)
+  validations:
+  - required
+  - is_string
+  options:
+  - 'Yes'
+  - 'No'
+  condition: equal
+  accepted_answers:
+  - 'No'
+  message_if_fail: Not gonna happen!
+
+- uuid: d3ce9780-b86e-41ed-bd7e-d8bc7455c810
+  question_type: drop_down
+  position: 60
+  body: Do you need me to be a Javascript ninja (beyond jQuery) or a CSS wizard?
+  validations:
+  - required
+  - is_string
+  options:
+  - 'Yes'
+  - 'No'
+  condition: equal
+  accepted_answers:
+  - 'No'
+  message_if_fail: Yeah, No!
+
+- uuid: 089cdbcc-a79c-48cb-a69b-3496ed9edcca
+  question_type: drop_down
+  position: 70
+  body: Am I required to do any tests for this job?
+  validations:
+  - required
+  - is_string
+  options:
+  - 'Yes'
+  - 'No'
+  condition: equal
+  accepted_answers:
+  - 'No'
+  message_if_fail: Not going to waste my time with coding tests - Sorry! I have been in this industry for long enough to know what I am doing.
