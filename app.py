@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, render_template_string, jsonify, Response
-from forms import form_for
+from flask import Flask, render_template, request, jsonify
 
+from forms import form_for
 from questions_controller import all_questions, question_with_uuid, first_question, question_after
 import acceptance_check
 
