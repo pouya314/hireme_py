@@ -44,17 +44,12 @@
                     $('#accepted').append(data.accepted);
                     $('#main').append(data.payload);
                 } else if (data.status == "error") {
-                    // $('div#error').remove();
-                    // $('form > fieldset').append(data.payload);
-
                     alert("Please correct the errors in the form!");
                     
                     Object.keys(data.payload).forEach(function (key) {
                         var el = "#" + key;
                         $(el).next(".error").text(data.payload[key].join(" "));
                     });
-
-
                 } else if (data.status == "fail") {
                     $('form').remove();
                     $('#main').append(data.payload);
