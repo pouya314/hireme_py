@@ -93,6 +93,9 @@ def submit_application():
         return jsonify(resp)
 
     # TODO: send the email (ensuring the prev answers are included)
+    print('*'*10)
+    print(application_form.accepted_bits.data)
+    print('*'*10)
 
     resp['status'] = 'success'
     resp['accepted'] = None

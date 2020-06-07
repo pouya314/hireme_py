@@ -63,9 +63,24 @@
                 bindFormSubmit();
             }
 
+            function populateHiddenField(data, jqForm, opts) {
+                // this is for application form to work properly
+                var field = data.find(el => el.name == "accepted_bits" );
+                if(typeof field !== "undefined") {
+                    var accepted_bits = "";
+                    $("#accepted h3").each(function(idx) {
+                        accepted_bits += $(this).text();
+                        accepted_bits += "\n";
+                    });
+                    field.value = accepted_bits;
+                }
+                return true;
+            }
+
             function bindFormSubmit() {
                 $('#question-form').ajaxForm({
                     dataType: 'json',
+                    beforeSubmit: populateHiddenField,
                     success: processJson
                 });
             }
