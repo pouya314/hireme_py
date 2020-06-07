@@ -1,20 +1,29 @@
-from wtforms import StringField, SelectField
+from wtforms import StringField, SelectField, TextAreaField
 import mappings
 
 
-def drop_down(question):
+def drop_down(question, label=None):
     return SelectField(
-        u'Please Select', 
+        label if label else u'Please Select', 
         validators=[mappings.Validations[v] for v in question['validations']],
         choices=[(option, option) for option in question['options']],
         render_kw={'class':'usa-select'}
     )
 
 
-def text_field(question):
+def text_field(question, label=None):
     return StringField(
-        u'Your Answer Here',
+        label if label else u'Your Answer Here',
         validators=[mappings.Validations[v] for v in question['validations']],
         default="",
         render_kw={'class':'usa-input'}
+    )
+
+
+def text_area(question, label=None):
+    return TextAreaField(
+        label if label else u'Your Answer Here',
+        validators=[mappings.Validations[v] for v in question['validations']],
+        default="",
+        render_kw={'class':'usa-textarea'}
     )

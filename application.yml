@@ -1,0 +1,56 @@
+---
+- question_type: text_field
+  position: 10
+  body: What is your name?
+  validations:
+  - required
+- question_type: text_field
+  position: 20
+  body: Your phone number?
+  validations:
+  - required
+- question_type: text_field
+  position: 30
+  body: Your email address?
+  validations:
+  - required
+- question_type: text_field
+  position: 40
+  body: What is the name of the company hiring?
+  validations:
+  - required
+- question_type: text_area
+  position: 45
+  body: How long has this position been empty? And why?
+  validations:
+  - required
+- question_type: text_area
+  position: 50
+  body: Tell me more about the project(s) I will be working on. (Include as much technical details/requirements as you can please)
+  validations:
+  - required
+- question_type: text_area
+  position: 60
+  body: Describe your company culture?
+  validations:
+  - required
+- question_type: text_area
+  position: 70
+  body: Tell me more about the people/teams I will be working with?
+  validations:
+  - required
+- question_type: text_area
+  position: 80
+  body: What is the company policy on remote work and flexible hours?
+  validations:
+  - required
+- question_type: text_area
+  position: 90
+  body: What's the work-life balance like?
+  validations:
+  - required
+- question_type: text_area
+  position: 100
+  body: Describe a bad day at your company?
+  validations:
+  - required

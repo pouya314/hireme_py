@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 
-from forms import form_for
+from forms import form_for, form_for_application
 from questions_controller import all_questions, question_with_uuid, first_question, question_after
+from applications_controller import all_application_questions
 import acceptance_check
 
 
@@ -11,12 +12,12 @@ app.config['SECRET_KEY'] = 'you-will-never-guess'
 
 
 
-@app.route('/', methods=['GET'])
+@app.route('/hireme', methods=['GET'])
 def landing_page():
     return render_template('landing_page.html')
 
 
-@app.route('/start_eligibility_test', methods=['GET'])
+@app.route('/hireme/eligibility_test', methods=['GET'])
 def start_eligibility_test():
     fq = first_question()
 
@@ -34,12 +35,12 @@ def question_answer_str(q, a):
     return '{} -> {}'.format(q['body'], a)
 
 
-@app.route('/submit_answer', methods=['POST'])
+@app.route('/hireme/submit_answer', methods=['POST'])
 def submit_answer():
     """
     Respond to ajax form submission.
     """
-    import time; time.sleep(2)  # TODO: REMOVE ME!
+    # import time; time.sleep(2)  # TODO: REMOVE ME!
 
     resp = {}
 
@@ -49,7 +50,7 @@ def submit_answer():
     form = form_for(curr_q)
     if not form.validate_on_submit():
         resp['status'] = 'error'
-        resp['payload'] = render_template('validation_error.html', msg=', '.join(form.answer.errors))
+        resp['payload'] = form.errors
         return jsonify(resp)
 
     # Check if acceptance condition is met
@@ -57,20 +58,35 @@ def submit_answer():
     accepted, err = acceptance_check.validate(supplied_answer, curr_q)
     if not accepted:
         resp['status'] = 'fail'
-        resp['payload'] = render_template('condition_error.html', val=question_answer_str(curr_q, supplied_answer), msg=err)
+        resp['payload'] = render_template('fail.html', 
+            val=question_answer_str(curr_q, supplied_answer), msg=err)
         return jsonify(resp)
 
     next_question = question_after(curr_q)
-    if not next_question:
-        return 'You have reached the last question'
+    if next_question:
+        # All good, go to next question
+        next_form = form_for(next_question)
+        resp['status'] = 'success'
+        resp['accepted'] = render_template('success.html', val=question_answer_str(curr_q, supplied_answer))
+        resp['payload'] = render_template('form.html', 
+            form=next_form, question=next_question['body'], 
+            uuid=next_question['uuid'])
+        return jsonify(resp)
 
-    # All good, go to next question
-    next_form = form_for(next_question)
+    # End of eligibility, now serve the application form
+    application_questions = all_application_questions()
+    application_form = form_for_application(application_questions)
     resp['status'] = 'success'
     resp['accepted'] = render_template('success.html', val=question_answer_str(curr_q, supplied_answer))
-    resp['payload'] = render_template('form.html', form=next_form, question=next_question['body'], uuid=next_question['uuid'])
+    resp['payload'] = render_template('application_form.html', 
+        form=application_form, 
+        fields=['q{}'.format(i+1) for i in range(len(application_questions))])
     return jsonify(resp)
 
+
+@app.route('/hireme/submit_application', methods=['POST'])
+def submit_application():
+    pass
 
 
 

@@ -21,4 +21,5 @@ Conditions = {
 FieldTypes = {
 	constants.QUESTION_TYPES_DROP_DOWN: form_fields.drop_down,
 	constants.QUESTION_TYPES_TEXT_FIELD: form_fields.text_field,
+    constants.QUESTION_TYPES_TEXT_AREA: form_fields.text_area,
 }

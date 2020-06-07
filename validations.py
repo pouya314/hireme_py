@@ -4,18 +4,18 @@ from decimal import Decimal
 
 def required(form, field):
     if not field.data:
-        raise ValidationError('Field is required.')
+        raise ValidationError('Required.')
 
 
 def is_string(form, field):
     try:
         str(field.data)
     except Exception as e:
-        raise ValidationError('Field must be a String.')
+        raise ValidationError('Must be a String.')
 
 
 def is_decimal(form, field):
     try:
         Decimal(field.data)
     except Exception as e:
-        raise ValidationError('Field must be a decimal.')
+        raise ValidationError('Must be decimal.')
