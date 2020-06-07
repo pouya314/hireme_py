@@ -13,6 +13,8 @@
 <form action="{{ url_for('submit_application') }}" method="post" id="question-form" style="margin-top: 1rem;" novalidate>
     <fieldset>
         <legend>Application Form</legend>
+
+        <p style="color: red;">* All fields are Required</p>
         
         {{ form.csrf_token() }}
         {{ form.accepted_bits() }}

@@ -23,5 +23,13 @@ def form_for(question):
 def form_for_application(questions):
     for idx, question in enumerate(questions):
         setattr(BaseForm, 'q{}'.format(idx+1), field_for(question, with_label=True))
+
     setattr(BaseForm, 'accepted_bits', HiddenField())
-    return BaseForm()
+
+    a_form = BaseForm()
+    # Hack to get around the weird behavior of WTforms.
+    # For some reason, it keeps adding 'answer' field!
+    if getattr(a_form, 'answer'):
+        delattr(a_form, 'answer')
+
+    return a_form

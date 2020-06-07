@@ -6,6 +6,11 @@ except ImportError:
 
 
 
+def all_application_questions():
+    return sorted(yaml.load(open("application.yml", "r").read(), Loader=Loader), 
+        key=lambda question: question['position'])
+
+
 def all_questions():
     return sorted(yaml.load(open("questions.yml", "r").read(), Loader=Loader), 
         key=lambda question: question['position'])
