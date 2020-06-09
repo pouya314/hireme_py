@@ -1,13 +1,25 @@
+import os
 from flask import Flask, render_template, request, jsonify
+from flask_mail import Mail, Message
 
 from forms import form_for, form_for_application
-from questions_controller import (all_questions, question_with_uuid,
-                                  first_question, question_after, all_application_questions)
+from questions_controller import (
+    all_questions, question_with_uuid, first_question,
+    question_after, all_application_questions)
 import acceptance_check
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'you-will-never-guess'
+
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['MAIL_SERVER'] = os.environ['MAIL_SERVER']
+app.config['MAIL_PORT'] = os.environ['MAIL_PORT']
+app.config['MAIL_USE_TLS'] = os.environ['MAIL_USE_TLS']
+app.config['MAIL_USE_SSL'] = os.environ['MAIL_USE_SSL']
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
+
+mail = Mail(app)
 
 
 @app.route('/hireme', methods=['GET'])
@@ -90,10 +102,24 @@ def submit_application():
         resp['payload'] = application_form.errors
         return jsonify(resp)
 
-    # TODO: send the email (ensuring the prev answers are included)
-    print('*'*10)
-    print(application_form.accepted_bits.data)
-    print('*'*10)
+    # Send email to self
+    msg = Message('New Job Opportunity Alert',
+                  sender=os.environ['MAIL_SENDER'],
+                  recipients=[os.environ['MAIL_RECEIVER']])
+
+    eligibility_lines = application_form.accepted_bits.data
+    msg_body = eligibility_lines + '\n'
+
+    for idx, q in enumerate(all_application_questions()):
+        msg_body += q['body']
+        msg_body += '\n'
+        msg_body += getattr(application_form, 'q{}'.format(idx+1)).data
+        msg_body += '\n'
+
+    msg.body = msg_body
+
+    with app.app_context():
+        mail.send(msg)
 
     resp['status'] = 'success'
     resp['accepted'] = None
@@ -102,6 +128,5 @@ def submit_application():
     return jsonify(resp)
 
 
-if __name__ == '__main__':
-    app.run()
-
+# if __name__ == '__main__':
+#     app.run()

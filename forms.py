@@ -40,8 +40,8 @@ def form_for_application(questions):
 
     a_form = BaseForm()
 
-    # Hack to get around the weird behavior of WTforms.
-    # For some reason, it keeps adding 'answer' field!
+    # Shitfuckery to get around the weird behavior of WTforms.
+    # For some reason, it keeps fields from previous submitted form!
     if hasattr(a_form, 'answer'):
         delattr(a_form, 'answer')
 
