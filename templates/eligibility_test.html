@@ -30,7 +30,7 @@
 
         function bindButtonClick() {
             $('#submit').click(function () {
-                $('#question-form').block({
+                $.blockUI({
                     message: '<h2>Processing</h2>',
                     css: { border: '3px solid #a00' }
                 });
@@ -39,7 +39,7 @@
 
         function processJson(data) {
             $(".error").empty();
-            $('#question-form').unblock();
+            $.unblockUI();
 
             if (data.status == "success") {
                 $('form').remove();
