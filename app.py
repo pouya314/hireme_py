@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
 
+from utils import str_to_bool
 from forms import form_for, form_for_application
 from questions_controller import (
     all_questions, question_with_uuid, first_question,
@@ -14,8 +15,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 app.config['MAIL_SERVER'] = os.environ['MAIL_SERVER']
 app.config['MAIL_PORT'] = int(os.environ['MAIL_PORT'])
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USE_TLS'] = str_to_bool(os.environ['MAIL_USE_TLS'])
+app.config['MAIL_USE_SSL'] = str_to_bool(os.environ['MAIL_USE_SSL'])
 app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
 
