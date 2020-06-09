@@ -4,36 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='uswds-2.7.0/css/uswds.min.css') }}" />
 </head>
 
 <body>
-    <div class="usa-prose">
-        <!-- <section class="example-spacing usa-prose margin-top-1 font-sans-sm measure-3 bg-primary-lighter"> -->
-        <h1>Welcome</h1>
-        <p class="usa-intro">
-            G'day mate! 👋 <br>
-            My name is Pouya 😎🤠 <br>
-            I'm a Python 🐍 programmer from Melbourne, Australia 🇦🇺🦘🐨 <br>
-            Thanks 🙏 for your interest in hiring me 👔 💼 <br>
-            This is the <span class="usa-tag">only</span> way to hire me so please do not 📞 📨 📱 🚫 <br>
-            <br>
-            You must follow this process:
-            <table>
-                <tr>
-                    <td>Take the <br>Eligibility Test</td>
-                    <td style="border: none;">&rarr;</td>
-                    <td>Submit your <br>Application</td>
-                    <td style="border: none;">&rarr;</td>
-                    <td>Wait to hear back <br>within 48 hours</td>
-                </tr>
-            </table>
+    <div class="jumbotron" style="padding: 2rem 2rem !important;">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">
+            <div class="usa-prose">
+                <p class="usa-intro">
+                    G'day 👋 <br>
+                    My name is Pouya 😎🤠 <br>
+                    I'm a Python 🐍 programmer from Melbourne, Australia 🇦🇺🦘🐨 <br>
+                    Thanks 🙏 for your interest in hiring me 👔 💼 <br>
+                    This is the <span class="usa-tag">only</span> way to hire me so please do not 📞 📨 📱 🚫 <br>
+                    <br>
+                    You must follow this process:
+                    <table>
+                        <tr>
+                            <td>Take the <br>Eligibility Test</td>
+                            <td style="border: none; background-color: #e9ecef;">&rarr;</td>
+                            <td>Submit your <br>Application</td>
+                            <td style="border: none; background-color: #e9ecef;">&rarr;</td>
+                            <td>Wait to hear back <br>within 48 hours</td>
+                        </tr>
+                    </table>
+                </p>
+            </div>        
         </p>
-        <div>
-            <a href="{{ url_for('start_eligibility_test') }}" class="usa-button">Start Eligibility Test</a>
-        </div>
-        <!-- </section> -->
+        <a href="{{ url_for('start_eligibility_test') }}" class="usa-button usa-button--accent-cool usa-button--big">Start Eligibility Test</a>
     </div>
+
     <script src="{{ url_for('static', filename='uswds-2.7.0/js/uswds.min.js') }}"></script>
 </body>
 
