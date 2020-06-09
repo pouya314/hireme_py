@@ -1,7 +1,6 @@
 from decimal import Decimal
 
 
-
 def any(submitted_answer, question):
     accepted = True
     error = None

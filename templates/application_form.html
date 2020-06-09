@@ -1,35 +1,33 @@
 <!-- Divider for end of eligibility section -->
 <div class="usa-alert usa-alert--info" style="margin-bottom: 1rem;">
-  <div class="usa-alert__body">
-    <h3 class="usa-alert__heading">End of Eligibility Test</h3>
-    <p class="usa-alert__text">
-        Now, fill out the application form below.
-    </p>
-  </div>
+    <div class="usa-alert__body">
+        <h3 class="usa-alert__heading">End of Eligibility Test</h3>
+        <p class="usa-alert__text">
+            Now, fill out the application form below.
+        </p>
+    </div>
 </div>
 
 
 <!-- Application form -->
-<form action="{{ url_for('submit_application') }}" method="post" id="question-form" style="margin-top: 1rem;" novalidate>
+<form action="{{ url_for('submit_application') }}" method="post" id="question-form" style="margin-top: 1rem;"
+    novalidate>
     <fieldset>
         <legend>Application Form</legend>
 
         <p style="color: red;">* All fields are Required</p>
-        
+
         {{ form.csrf_token() }}
         {{ form.accepted_bits() }}
 
         {% for field in fields %}
-            <label class="usa-label" for="input-type-text">
-                {{ form[field].label }}
-            </label>
-            {{ form[field]() }}
-            <p class="error" style="color:red;"></p><br>
+        <label class="usa-label" for="input-type-text">
+            {{ form[field].label }}
+        </label>
+        {{ form[field]() }}
+        <p class="error" style="color:red;"></p><br>
         {% endfor %}
-    
+
         <p>{{ form.submit(class_="usa-button") }}</p>
     </fieldset>
 </form>
-
-
- 

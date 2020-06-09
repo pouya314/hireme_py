@@ -4,10 +4,10 @@ import mappings
 
 def drop_down(question, label=None):
     return SelectField(
-        label if label else u'Please Select', 
+        label if label else u'Please Select',
         validators=[mappings.Validations[v] for v in question['validations']],
         choices=[(option, option) for option in question['options']],
-        render_kw={'class':'usa-select'}
+        render_kw={'class': 'usa-select'}
     )
 
 
@@ -16,7 +16,7 @@ def text_field(question, label=None):
         label if label else u'Your Answer Here',
         validators=[mappings.Validations[v] for v in question['validations']],
         default="",
-        render_kw={'class':'usa-input'}
+        render_kw={'class': 'usa-input'}
     )
 
 
@@ -25,5 +25,5 @@ def text_area(question, label=None):
         label if label else u'Your Answer Here',
         validators=[mappings.Validations[v] for v in question['validations']],
         default="",
-        render_kw={'class':'usa-textarea'}
+        render_kw={'class': 'usa-textarea'}
     )

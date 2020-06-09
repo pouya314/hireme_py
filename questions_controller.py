@@ -5,21 +5,20 @@ except ImportError:
     from yaml import Loader, Dumper
 
 
-
 def all_application_questions():
-    return sorted(yaml.load(open("application.yml", "r").read(), Loader=Loader), 
-        key=lambda question: question['position'])
+    return sorted(yaml.load(open("application.yml", "r").read(), Loader=Loader),
+                  key=lambda question: question['position'])
 
 
 def all_questions():
-    return sorted(yaml.load(open("questions.yml", "r").read(), Loader=Loader), 
-        key=lambda question: question['position'])
+    return sorted(yaml.load(open("questions.yml", "r").read(), Loader=Loader),
+                  key=lambda question: question['position'])
 
 
 def idx_question_by_uuid(uuid):
     found = [
-        (idx, question_dict) 
-        for idx, question_dict in enumerate(all_questions()) 
+        (idx, question_dict)
+        for idx, question_dict in enumerate(all_questions())
         if str(uuid) == question_dict['uuid']
     ]
     assert len(found) == 1, "Error: Could not find the question by the UUID given."

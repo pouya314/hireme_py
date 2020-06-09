@@ -4,7 +4,6 @@ from wtforms import StringField, SubmitField, HiddenField, SelectField
 import mappings
 
 
-
 class BaseForm(FlaskForm):
     uuid = HiddenField('UUID')
     submit = SubmitField('Submit')
@@ -22,7 +21,8 @@ def form_for(question):
 
 def form_for_application(questions):
     for idx, question in enumerate(questions):
-        setattr(BaseForm, 'q{}'.format(idx+1), field_for(question, with_label=True))
+        setattr(BaseForm, 'q{}'.format(idx+1),
+                field_for(question, with_label=True))
 
     setattr(BaseForm, 'accepted_bits', HiddenField())
 

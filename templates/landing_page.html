@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='uswds-2.7.0/css/uswds.min.css') }}" />
 </head>
+
 <body>
 
     <div class="usa-prose">
-      <!-- <section class="example-spacing usa-prose margin-top-1 font-sans-sm measure-3 bg-primary-lighter"> -->
+        <!-- <section class="example-spacing usa-prose margin-top-1 font-sans-sm measure-3 bg-primary-lighter"> -->
         <h1>Welcome</h1>
         <p class="usa-intro">
             G'day mate! 👋 <br>
@@ -18,21 +20,22 @@
             This is the <span class="usa-tag">only</span> way to hire me so please do not 📞 📨 📱 🚫 <br>
             <br>
             You must follow this process:
-            <table>
-                <tr>
-                    <td>Take the <br>Eligibility Test</td>
-                    <td style="border: none;">&rarr;</td>
-                    <td>Submit your <br>Application</td>
-                    <td style="border: none;">&rarr;</td>
-                    <td>Wait to hear back <br>within 48 hours</td>
-                </tr>
-            </table>
+        <table>
+            <tr>
+                <td>Take the <br>Eligibility Test</td>
+                <td style="border: none;">&rarr;</td>
+                <td>Submit your <br>Application</td>
+                <td style="border: none;">&rarr;</td>
+                <td>Wait to hear back <br>within 48 hours</td>
+            </tr>
+        </table>
         </p>
         <div>
             <a href="{{ url_for('start_eligibility_test') }}" class="usa-button">Start Eligibility Test</a>
         </div>
-      <!-- </section> -->
+        <!-- </section> -->
     </div>
-<script src="{{ url_for('static', filename='uswds-2.7.0/js/uswds.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='uswds-2.7.0/js/uswds.min.js') }}"></script>
 </body>
+
 </html>
