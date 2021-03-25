@@ -21,7 +21,7 @@ prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 pycodestyle==2.6.0
 Pygments==2.6.1
-PyYAML==5.3.1
+PyYAML==5.4
 six==1.15.0
 toml==0.10.1
 traitlets==4.3.3
