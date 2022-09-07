@@ -9,7 +9,7 @@ def any(submitted_answer, question):
         accepted = False
         error = question['message_if_fail']
 
-    return (accepted, error)
+    return accepted, error
 
 
 def equal(submitted_answer, question):
@@ -20,7 +20,7 @@ def equal(submitted_answer, question):
         accepted = False
         error = question['message_if_fail']
 
-    return (accepted, error)
+    return accepted, error
 
 
 def gte(submitted_answer, question):
@@ -31,4 +31,4 @@ def gte(submitted_answer, question):
         accepted = False
         error = question['message_if_fail']
 
-    return (accepted, error)
+    return accepted, error
