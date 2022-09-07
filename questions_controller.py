@@ -1,4 +1,5 @@
 import yaml
+
 try:
     from yaml import CLoader as Loader, CDumper as Dumper
 except ImportError:
@@ -37,6 +38,6 @@ def first_question():
 def question_after(curr_q):
     idx, q = idx_question_by_uuid(curr_q['uuid'])
     try:
-        return all_questions()[idx+1]
+        return all_questions()[idx + 1]
     except Exception as e:
         return None

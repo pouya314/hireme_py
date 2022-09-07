@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, HiddenField, SelectField
+from wtforms import SubmitField, HiddenField
 
-from questions_controller import all_application_questions
 import mappings
+from questions_controller import all_application_questions
 
 
 class BaseForm(FlaskForm):
@@ -23,7 +23,7 @@ def form_for(question):
     # Shitfuckery to get around the weird behavior of WTforms.
     # For some reason, it keeps fields from previous submitted form!
     for idx, q in enumerate(all_application_questions()):
-        att = 'q{}'.format(idx+1)
+        att = 'q{}'.format(idx + 1)
         if hasattr(f, att):
             delattr(f, att)
     if hasattr(f, 'accepted_bits'):
@@ -34,7 +34,7 @@ def form_for(question):
 
 def form_for_application(questions):
     for idx, question in enumerate(questions):
-        setattr(BaseForm, 'q{}'.format(idx+1),
+        setattr(BaseForm, 'q{}'.format(idx + 1),
                 field_for(question, with_label=True))
     setattr(BaseForm, 'accepted_bits', HiddenField())
 
