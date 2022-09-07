@@ -19,6 +19,8 @@ app.config['MAIL_USE_TLS'] = str_to_bool(os.environ['MAIL_USE_TLS'])
 app.config['MAIL_USE_SSL'] = str_to_bool(os.environ['MAIL_USE_SSL'])
 app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
+SENDER = os.environ['MAIL_SENDER']
+RECEIVER = os.environ['MAIL_RECEIVER']
 
 mail = Mail(app)
 
@@ -105,8 +107,8 @@ def submit_application():
 
     # Send email to self
     msg = Message('New Job Opportunity Alert',
-                  sender=os.environ['MAIL_SENDER'],
-                  recipients=[os.environ['MAIL_RECEIVER']])
+                  sender=SENDER,
+                  recipients=[RECEIVER])
 
     eligibility_lines = application_form.accepted_bits.data
     msg_body = eligibility_lines + '\n'
