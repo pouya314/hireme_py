@@ -21,7 +21,7 @@
 - uuid: a3d0ff9d-62f2-428a-9688-1634a9ef2f79
   question_type: drop_down
   position: 20
-  body: Is this a Permanent job?
+  body: Is this a Permanent position?
   validations:
   - required
   - is_string
@@ -31,18 +31,18 @@
   condition: equal
   accepted_answers:
   - 'Yes'
-  message_if_fail: I am currently only interested in permanent jobs.
+  message_if_fail: I am currently only interested in permanent positions.
 
 - uuid: 306ba067-6424-4411-82ed-a187e8226ebc
   question_type: text_field
   position: 30
-  body: How much does it pay?
+  body: How much does it pay (in Australian $)?
   validations:
   - required
   - is_decimal
   condition: gte
   accepted_answers: 
-  - 150000.00
+  - 170000.00
   message_if_fail: That amount is not gonna cut it for me! :)
 
 - uuid: a0e3d49b-aae6-4b10-b61c-8f0017917cb8
@@ -103,4 +103,4 @@
   condition: equal
   accepted_answers:
   - 'No'
-  message_if_fail: Not going to waste my time with coding tests - Sorry! I have been in this industry for long enough to know what I am doing.
+  message_if_fail: Not going to waste my time with coding tests - Sorry! I have been in this industry long enough to know what I am doing.
