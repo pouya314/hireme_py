@@ -8,6 +8,8 @@ QUESTION_TYPES = (
     QUESTION_TYPES_TEXT_AREA
 )
 
+# ######################################################
+
 VALIDATIONS_REQUIRED = 'required'
 VALIDATIONS_IS_STRING = 'is_string'
 VALIDATIONS_IS_DECIMAL = 'is_decimal'
@@ -17,6 +19,8 @@ VALIDATIONS = (
     VALIDATIONS_IS_STRING,
     VALIDATIONS_IS_DECIMAL
 )
+
+# ######################################################
 
 CONDITIONS_ANY = 'any'
 CONDITIONS_EQUAL = 'equal'

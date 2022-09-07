@@ -75,7 +75,7 @@ def submit_answer():
 
     next_question = question_after(curr_q)
     if next_question:
-        # All good, go to next question
+        # All good, go to the next question
         next_form = form_for(next_question)
         resp['status'] = 'success'
         resp['accepted'] = render_template('success.html',
