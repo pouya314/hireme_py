@@ -1,14 +1,14 @@
 import os
+
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
 
-from utils import str_to_bool
+import acceptance_check
 from forms import form_for, form_for_application
 from questions_controller import (
-    all_questions, question_with_uuid, first_question,
+    question_with_uuid, first_question,
     question_after, all_application_questions)
-import acceptance_check
-
+from utils import str_to_bool
 
 app = Flask(__name__)
 
@@ -89,7 +89,7 @@ def submit_answer():
     resp['accepted'] = render_template('success.html',
                                        val=question_answer_str(curr_q, supplied_answer))
     resp['payload'] = render_template('application_form.html', form=application_form,
-                                      fields=['q{}'.format(i+1) for i in range(len(application_questions))])
+                                      fields=['q{}'.format(i + 1) for i in range(len(application_questions))])
     return jsonify(resp)
 
 
@@ -114,7 +114,7 @@ def submit_application():
     for idx, q in enumerate(all_application_questions()):
         msg_body += q['body']
         msg_body += '\n'
-        msg_body += getattr(application_form, 'q{}'.format(idx+1)).data
+        msg_body += getattr(application_form, 'q{}'.format(idx + 1)).data
         msg_body += '\n'
 
     msg.body = msg_body
@@ -127,7 +127,6 @@ def submit_application():
     resp['payload'] = render_template('success.html',
                                       val='Your application has been submitted successfuly. Thank you!')
     return jsonify(resp)
-
 
 # if __name__ == '__main__':
 #     app.run()
