@@ -45,6 +45,7 @@
                 $('form').remove();
                 $('#accepted').append(data.accepted);
                 $('#main').append(data.payload);
+                $("input#answer").val("");
             } else if (data.status == "error") {
                 alert("Please correct the errors in the form!");
 
