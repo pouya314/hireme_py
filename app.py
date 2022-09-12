@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from flask_mail import Mail, Message
 
 import acceptance_check
@@ -23,6 +23,11 @@ SENDER = os.environ['MAIL_SENDER']
 RECEIVER = os.environ['MAIL_RECEIVER']
 
 mail = Mail(app)
+
+
+@app.route('/')
+def root():
+    return redirect(url_for('landing_page'))
 
 
 @app.route('/hireme', methods=['GET'])
